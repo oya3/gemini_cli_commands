@@ -1,0 +1,30 @@
+{
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "general": {
+    "previewFeatures": true
+  },
+  "generationConfig": {
+    "temperature": 0,
+    "topK": 1,
+    "topP": 0
+  },
+  "mcpServers": {
+    "windows-mcp": {
+      "command": "uvx",
+      "args": [
+        "windows-mcp"
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"],
+      "env": {
+        "PLAYWRIGHT_BROWSERS_PATH": "./browsers"
+      }
+    }
+  }
+}
