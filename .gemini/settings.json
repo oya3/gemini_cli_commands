@@ -25,6 +25,12 @@
       "env": {
         "PLAYWRIGHT_BROWSERS_PATH": "./browsers"
       }
+    },
+    "Canva": {
+      "httpUrl": "https://mcp.canva.com/mcp",
+      "oauth": {
+        "enabled": true
+      }
     }
   }
 }
