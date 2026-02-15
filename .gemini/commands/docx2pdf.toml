@@ -1,0 +1,6 @@
+description = "Wordファイル(.docx)をPDFに変換します。"
+prompt = """
+以下のWordファイルをPDFに変換しました。
+
+$(powershell.exe -NoProfile -ExecutionPolicy Bypass -File docx2pdf.ps1 {{args}})
+"""

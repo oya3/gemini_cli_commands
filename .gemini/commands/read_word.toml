@@ -1,0 +1,6 @@
+description = "WordファイルをBase64として読み込み、その内容をコンテキストに含めます。"
+prompt = """
+以下のWordファイル（Base64形式）の内容を解析してください。
+
+$(python read_word.py {{args}})
+"""
