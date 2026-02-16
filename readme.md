@@ -11,6 +11,9 @@
     - [2. mcp-windows-desktop-automation](#2-mcp-windows-desktop-automation)
     - [3. MCP on Windows (Microsoft公式)](#3-mcp-on-windows-microsoft公式)
     - [導入と使い分けのイメージ](#導入と使い分けのイメージ)
+  - [MCP 実験](#mcp-実験)
+    - [1. Windows-MCP (by CursorTouch)](#1-windows-mcp-by-cursortouch-1)
+      - [ビルド手順](#ビルド手順)
   - [参考](#参考)
     - [URL](#url)
     - [AI履歴](#ai履歴)
@@ -102,6 +105,42 @@ Windows OSやその上のアプリ（C#、VB6等）をGemini CLIなどのAIか�
 **次のステップ：**
 実際にこれらをGemini CLIに登録するための**設定ファイル（json）の書き方**や、**インストールコマンド**を具体的に提示しましょうか？
 
+## MCP 実験
+
+### 1. Windows-MCP (by CursorTouch)
+
+`windows-mcp` を使用して、生成した C# アプリ (`sample.exe`) の GUI を自動操作する実験。
+
+#### ビルド手順
+
+**通常のビルド（開発用）**
+
+```powershell
+cd sample_app
+dotnet build -c Release
+```
+
+生成場所: `sample_app\bin\Release\net10.0-windows\` （複数のファイルが出力されます）
+
+**単一実行ファイルの生成（配布用・軽量版）**
+
+ビルドサイズを抑えるため、`.csproj` に設定を追加した上で、ランタイムを含めない形式で公開します。
+
+```powershell
+cd sample_app
+dotnet publish -c Release -r win-x64 --self-contained false
+```
+
+生成場所: `sample_app\bin\Release\net10.0-windows\win-x64\publish\sample.exe` （約170KB）
+※ 実行環境に .NET 10 デスクトップランタイムがインストールされている必要があります。
+
+Windows-MCP を使って sample_app.exe を操作する実験
+以下のプロンプトで自由にアプリを操作することができる
+
+```
+`sample_app` フォルダにある `sample.exe` を起動して、IPアドレスに `192.168.1.1`、ポートに `8888` を入力して保存ボタンを押してください。最後に `setting.json` が生成されたことを確認してください。
+```
+
 ## 参考
 ### URL
 - google gemini 公式 拡張サイト  
@@ -130,17 +169,14 @@ Windows OSやその上のアプリ（C#、VB6等）をGemini CLIなどのAIか�
 
 ✦ windows-mcp MCP Server を使ってメモ帳を起動し、本文に「test」と入力するためのプロンプト文は、以下のようになります。
 
-
    1 windows-mcp を使ってメモ帳 (notepad) を起動し、本文に "test" と入力してください。
 
   もし、より詳細な手順を指定したい場合は、以下のように記述することもできます。
-
 
    1 windows-mcp を使って以下の操作を行ってください：
    2 1. メモ帳 (notepad) を起動する。
    3 2. 起動したメモ帳のウィンドウにフォーカスを合わせる。
    4 3. 本文に "test" と入力する。
-
 
   これらのプロンプトを使えば、私は適切にツールを選択して実行することができます。
 ```
