@@ -129,6 +129,8 @@ dotnet build -c Release
 ```powershell
 cd sample_app
 dotnet publish -c Release -r win-x64 --self-contained false
+
+# dotnet publish -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true 
 ```
 
 生成場所: `sample_app\bin\Release\net10.0-windows\win-x64\publish\sample.exe` （約170KB）
